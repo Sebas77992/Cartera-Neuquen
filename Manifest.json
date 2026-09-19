@@ -1,0 +1,11 @@
+{
+  "name": "Cartera Neuquén",
+  "short_name": "Cartera Neuquén",
+  "description": "Sistema de gestión de cartera, clientes, créditos, pagos y caja.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#111827",
+  "orientation": "portrait",
+  "lang": "es-AR"
+}

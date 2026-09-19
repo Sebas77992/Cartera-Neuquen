@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Cartera Neuquén">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Cartera Neuquén</title>
+</head>
+
+<body>
+
+<div id="app">
+
+<header class="topbar">
+  <div>
+    <div class="eyebrow">CARTERA</div>
+    <h1>Neuquén</h1>
+  </div>
+  <button class="icon-btn" id="menuBtn">☰</button>
+</header>
+
+<main id="main">
+
+<section id="view-dashboard" class="view active">
+
+  <div class="hero">
+    <div>
+      <span>Disponible en caja</span>
+      <strong id="cashBalance">$0</strong>
+    </div>
+    <button class="primary" id="quickPaymentBtn">+ Registrar pago</button>
+  </div>
+
+  <div class="stats-grid">
+
+    <article class="stat">
+      <span>Capital total</span>
+      <b id="totalCapital">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Capital colocado</span>
+      <b id="lentCapital">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Saldo pendiente</span>
+      <b id="outstanding">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Total cobrado</span>
+      <b id="collected">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Clientes activos</span>
+      <b id="activeClients">0</b>
+    </article>
+
+    <article class="stat danger">
+      <span>En mora</span>
+      <b id="arrears">0</b>
+    </article>
+
+  </div>
+
+  <div class="section-head">
+    <h2>Resumen de hoy</h2>
+  </div>
+
+  <div class="panel">
+
+    <div class="row">
+      <span>Cobros de hoy</span>
+      <b id="todayCollected">$0</b>
+    </div>
+
+    <div class="row">
+      <span>Comisión cobrador (4%)</span>
+      <b id="todayCommission">$0</b>
+    </div>
+
+    <div class="row">
+      <span>Créditos activos</span>
+      <b id="activeCredits">0</b>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="view-clients" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Clientes</h2>
+      <p>Gestiona tu cartera de clientes.</p>
+    </div>
+
+    <button class="primary" id="addClientBtn">+ Cliente</button>
+
+  </div>
+
+  <input
+    class="search"
+    id="clientSearch"
+    placeholder="Buscar por nombre o teléfono"
+  >
+
+  <div id="clientsList" class="cards"></div>
+
+</section>
+
+
+<section id="view-credits" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Créditos</h2>
+      <p>Préstamos, cuotas y saldos.</p>
+    </div>
+
+    <button class="primary" id="addCreditBtn">+ Crédito</button>
+
+  </div>
+
+  <div class="filterbar">
+
+    <select id="creditFilter">
+
+      <option value="all">Todos</option>
+      <option value="active">Activos</option>
+      <option value="overdue">En mora</option>
+      <option value="finished">Terminados</option>
+
+    </select>
+
+  </div>
+
+  <div id="creditsList" class="cards"></div>
+
+</section>
+
+
+<section id="view-payments" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Pagos</h2>
+      <p>Historial de cobros.</p>
+    </div>
+
+    <button class="primary" id="addPaymentBtn">+ Pago</button>
+
+  </div>
+
+  <div id="paymentsList" class="cards"></div>
+
+</section>
+
+
+<section id="view-cash" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Caja</h2>
+      <p>Entradas y salidas de dinero.</p>
+    </div>
+
+    <button class="primary" id="addCashBtn">+ Movimiento</button>
+
+  </div>
+
+  <div class="panel">
+
+    <div class="row">
+      <span>Saldo actual</span>
+      <b id="cashBalance2">$0</b>
+    </div>
+
+  </div>
+
+  <div id="cashList" class="cards"></div>
+
+</section>
+
+
+<section id="view-reports" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Reportes</h2>
+      <p>Indicadores de la cartera.</p>
+    </div>
+
+  </div>
+
+  <div class="stats-grid">
+
+    <article class="stat">
+      <span>Intereses generados</span>
+      <b id="interestGenerated">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Comisiones</span>
+      <b id="commissionTotal">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Gastos</span>
+      <b id="expensesTotal">$0</b>
+    </article>
+
+    <article class="stat">
+      <span>Recuperación</span>
+      <b id="recoveryRate">0%</b>
+    </article>
+
+  </div>
+
+  <div class="panel">
+
+    <h3>Estado de la cartera</h3>
+
+    <div id="reportRows"></div>
+
+  </div>
+
+</section>
+
+
+<section id="view-settings" class="view">
+
+  <div class="page-head">
+
+    <div>
+      <h2>Configuración</h2>
+      <p>Parámetros de la cartera.</p>
+    </div>
+
+  </div>
+
+  <form id="settingsForm" class="panel form">
+
+    <label>
+      Interés (%)
+      <input id="setInterest" type="number" min="0" step="0.1">
+    </label>
+
+    <label>
+      Plazo (días)
+      <input id="setTerm" type="number" min="1">
+    </label>
+
+    <label>
+      Comisión cobrador (%)
+      <input id="setCommission" type="number" min="0" step="0.1">
+    </label>
+
+    <button class="primary" type="submit">
+      Guardar configuración
+    </button>
+
+  </form>
+
+</section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+  <button data-view="dashboard" class="nav active">
+    ⌂
+    <small>Inicio</small>
+  </button>
+
+  <button data-view="clients" class="nav">
+    ♙
+    <small>Clientes</small>
+  </button>
+
+  <button data-view="credits" class="nav">
+    ▣
+    <small>Créditos</small>
+  </button>
+
+  <button data-view="payments" class="nav">
+    ✓
+    <small>Pagos</small>
+  </button>
+
+  <button data-view="cash" class="nav">
+    ¤
+    <small>Caja</small>
+  </button>
+
+  <button data-view="reports" class="nav">
+    ▤
+    <small>Reportes</small>
+  </button>
+
+</nav>
+
+
+<div id="modal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeModal">×</button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</div>
+
+</body>
+</html>
